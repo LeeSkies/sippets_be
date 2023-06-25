@@ -17,7 +17,7 @@ const server = require('http').createServer(app)
 // middleware
 app.use(
   cors({
-    origin: 'https://sippets.vercel.app',
+    origin: 'https://sippets.netlify.app',
     // origin: 'http://localhost:5173',
     credentials: true,
   }),
