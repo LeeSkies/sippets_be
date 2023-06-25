@@ -30,7 +30,7 @@ const signup = async (req, res) => {
     const token = tokenize(user._id, 'access');
     res.cookie('token', token, {
       httpOnly: true,
-      // sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 900000,
       // secure: true,
     });
@@ -39,7 +39,7 @@ const signup = async (req, res) => {
     const refresh_token = tokenize(user._id, 'refresh')
     res.cookie('refresh', refresh_token, {
       httpOnly: true,
-      // sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 2592000000,
       // secure: true,
     });
@@ -72,7 +72,7 @@ const login = async (req, res) => {
     const token = tokenize(user._id, 'access');
     res.cookie('token', token, {
       httpOnly: true,
-      // sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 3600000,
       // secure: true,
     });
@@ -81,7 +81,7 @@ const login = async (req, res) => {
     const refresh_token = tokenize(user._id, 'refresh')
     res.cookie('refresh', refresh_token, {
       httpOnly: true,
-      // sameSite: 'strict',
+      sameSite: 'none',
       maxAge: 2592000000,
       // secure: true,
     });
