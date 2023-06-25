@@ -18,7 +18,8 @@ const server = require('http').createServer(app)
 app.use(
   cors({
     origin: 'https://sippets.vercel.app',
-    credentials: true
+    credentials: true,
+    exposedHeaders: ["Set-cookie"],
   }),
   express.json(),
   cookieParser(),
