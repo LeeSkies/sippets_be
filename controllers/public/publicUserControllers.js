@@ -32,7 +32,7 @@ const signup = async (req, res) => {
       httpOnly: true,
       sameSite: 'none',
       maxAge: 900000,
-      // secure: true,
+      secure: true,
     });
 
     // issuing a refresh token
@@ -41,7 +41,7 @@ const signup = async (req, res) => {
       httpOnly: true,
       sameSite: 'none',
       maxAge: 2592000000,
-      // secure: true,
+      secure: true,
     });
 
     const { _id, image, bio, likes, followers, following, sippets, comments } = user
@@ -74,7 +74,7 @@ const login = async (req, res) => {
       httpOnly: true,
       sameSite: 'none',
       maxAge: 3600000,
-      // secure: true,
+      secure: true,
     });
 
     // issuing a refresh token
@@ -83,7 +83,7 @@ const login = async (req, res) => {
       httpOnly: true,
       sameSite: 'none',
       maxAge: 2592000000,
-      // secure: true,
+      secure: true,
     });
 
     user.refresh_token = refresh_token
