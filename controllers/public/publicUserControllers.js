@@ -48,10 +48,11 @@ const signup = async (req, res) => {
       secure: true,
     });
 
-    const { _id, image, bio, likes, followers, following, sippets, comments } = user
+    const { _id, username, bio, followersCount, followingCount, theme, codeTheme } = user
+    const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
     user.refresh_token = refresh_token
     user.save()
-    res.status(201).json({ message: 'User created successfully', user: { _id, username, image, bio, followersCount, followingCount, theme, codeTheme } });
+    res.status(202).json({ ...obj, image: user?.image?.secure_url ? user.image.secure_url : null })
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: 'An error occurred while creating the user', error: error.message });
