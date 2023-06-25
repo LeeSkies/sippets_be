@@ -600,9 +600,7 @@ const getLatestSippets = async (req, res) => {
       }
     })
 
-    res.json(finalSippets.map(s => {
-      return {...s, ref_sippet: {...ref_sippet, file: s.ref_sippet.file.secure_url}}
-    }))
+    res.json(finalSippets)
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: 'An error occurred while fetching the sippets.' });
