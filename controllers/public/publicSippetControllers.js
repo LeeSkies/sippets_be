@@ -86,7 +86,7 @@ const getSingleSippet = async (req, res) => {
           author: {
             _id: '$author._id',
             username: '$author.username',
-            image: '$author.image.secure_url',
+            image: 1,
           },
           blocks: 1,
           language: 1,
@@ -95,9 +95,9 @@ const getSingleSippet = async (req, res) => {
             author: {
               _id: '$ref_sippet.author._id',
               username: '$ref_sippet.author.username',
-              image: '$ref_sippet.author.image.secure_url',
+              image: 1,
             },
-            file: '$ref_sippet.file.secure_url',
+            file: 1,
             blocks: '$ref_sippet.blocks',
             language: '$ref_sippet.language',
             likesCount: '$ref_sippet.likesCount',
@@ -105,7 +105,7 @@ const getSingleSippet = async (req, res) => {
             toastsCount: '$ref_sippet.toastsCount',
             hashtags: '$ref_sippet.hashtags',
           },
-          file: '$file.secure_url',
+          file: 1,
           likesCount: 1,
           commentsCount: 1,
           toastsCount: 1,
@@ -202,16 +202,16 @@ const getLatestSippets = async (req, res) => {
           author: {
             _id: '$author._id',
             username: '$author.username',
-            image: '$author.image.secure_url',
+            image: 1,
           },
           ref_sippet: {
             _id: '$ref_sippet._id',
             author: {
               _id: '$ref_sippet.author._id',
               username: '$ref_sippet.author.username',
-              image: '$ref_sippet.author.image.secure_url',
+              image: 1,
             },
-            file: '$ref_sippet.file.secure_url',
+            file: 1,
             blocks: '$ref_sippet.blocks',
             language: '$ref_sippet.language',
             likesCount: '$ref_sippet.likesCount',
@@ -219,7 +219,7 @@ const getLatestSippets = async (req, res) => {
             toastsCount: '$ref_sippet.toastsCount',
             hashtags: '$ref_sippet.hashtags',
           },
-          file: '$file.secure_url',
+          file: 1,
           blocks: 1,
           language: 1,
           ref_sippet: 1,
@@ -231,10 +231,8 @@ const getLatestSippets = async (req, res) => {
         }
       }
     ]).exec();
-    const finalSippets = sippets.map(s => {
-      return {...s, ref_sippet: {...s.ref_sippet, file: s.ref_sippet.file.secure_url}}
-    })
-    res.json(finalSippets)
+    
+    res.json(sippets)
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: 'An error occurred while fetching the sippets.' });
@@ -305,7 +303,7 @@ const getUserComments = async (req, res) => {
           author: {
             _id: 1,
             username: 1,
-            image: '$author.image.secure_url',
+            image: 1,
           },
           blocks: 1,
           language: 1,
@@ -314,9 +312,9 @@ const getUserComments = async (req, res) => {
             author: {
               _id: 1,
               username: 1,
-              image: '$ref_sippet.author.image.secure_url',
+              image: 1,
             },
-            file: '$ref_sippet.file.secure_url',
+            file: 1,
             blocks: 1,
             language: 1,
             likesCount: 1,
@@ -324,7 +322,7 @@ const getUserComments = async (req, res) => {
             toastsCount: 1,
             hashtags: 1,
           },
-          file: '$file.secure_url',
+          file: 1,
           likesCount: 1,
           commentsCount: 1,
           toastsCount: 1,
@@ -404,7 +402,7 @@ const getUserSippets = async (req, res) => {
           author: {
             _id: 1,
             username: 1,
-            image: '$author.image.secure_url',
+            image: 1,
           },
           blocks: 1,
           language: 1,
@@ -413,9 +411,9 @@ const getUserSippets = async (req, res) => {
             author: {
               _id: 1,
               username: 1,
-              image: '$ref_sippet.author.image.secure_url',
+              image: 1,
             },
-            file: '$ref_sippet.file.secure_url',
+            file: 1,
             blocks: 1,
             language: 1,
             likesCount: 1,
@@ -423,7 +421,7 @@ const getUserSippets = async (req, res) => {
             toastsCount: 1,
             hashtags: 1,
           },
-          file: '$file.secure_url',
+          file: 1,
           likesCount: 1,
           commentsCount: 1,
           toastsCount: 1,

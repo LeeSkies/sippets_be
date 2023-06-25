@@ -394,7 +394,7 @@ const getSingleSippet = async (req, res) => {
           author: {
             _id: '$author._id',
             username: '$author.username',
-            image: '$author.image.secure_url',
+            image: 1,
           },
           blocks: 1,
           language: 1,
@@ -403,7 +403,7 @@ const getSingleSippet = async (req, res) => {
             author: {
               _id: '$ref_sippet.author._id',
               username: '$ref_sippet.author.username',
-              image: '$ref_sippet.author.image.secure_url',
+              image: 1,
             },
             blocks: '$ref_sippet.blocks',
             language: '$ref_sippet.language',
@@ -412,7 +412,7 @@ const getSingleSippet = async (req, res) => {
             toastsCount: '$ref_sippet.toastsCount',
             hashtags: '$ref_sippet.hashtags',
           },
-          file: '$file.secure_url',
+          file: 1,
           ref_followed: 1,
           followed: 1,
           liked: 1,
@@ -437,7 +437,7 @@ const getSingleSippet = async (req, res) => {
 
       const [author] = sippet.commentAuthors.filter(a => {
         if (a._id.toString() == comment.author.toString())
-          return { id: a._id, username: a.username, image: a?.image?.secure_url ? a.image.secure_url : null }
+          return { id: a._id, username: a.username, image: a?.image? a.image : null }
       })
 
       const liked = sippet.commentsLikes.includes(comment._id.toString())
@@ -451,9 +451,6 @@ const getSingleSippet = async (req, res) => {
 
     delete sippet.commentAuthors
     delete sippet.commentsLikes
-    sippet.comments = sippet.comments.map(c => {
-      return {...c, author: {...c.author, image: c.author.image.secure_url}}
-    })    
     res.json(sippet)
   } catch (error) {
     console.error(error.message);
@@ -560,16 +557,16 @@ const getLatestSippets = async (req, res) => {
           author: {
             _id: '$author._id',
             username: '$author.username',
-            image: '$author.image.secure_url',
+            image: 1,
           },
           ref_sippet: {
             _id: '$ref_sippet._id',
             author: {
               _id: '$ref_sippet.author._id',
               username: '$ref_sippet.author.username',
-              image: '$ref_sippet.author.image.secure_url',
+              image: 1,
             },
-            file: '$ref_sippet.file.secure_url',
+            file: 1,
             blocks: '$ref_sippet.blocks',
             language: '$ref_sippet.language',
             likesCount: '$ref_sippet.likesCount',
@@ -578,7 +575,7 @@ const getLatestSippets = async (req, res) => {
             hashtags: '$ref_sippet.hashtags',
             createdAt: 1,
           },
-          file: '$file.secure_url',
+          file: 1,
           blocks: 1,
           language: 1,
           ref_sippet: 1,
@@ -597,7 +594,6 @@ const getLatestSippets = async (req, res) => {
       return {
         ...sippet,
         liked,
-        ref_sippet: {...sippet.ref_sippet, file: sippet.ref_sippet.file.secure_url}
       }
     })
 
@@ -706,7 +702,7 @@ const getLikedSippets = async (req, res) => {
           author: {
             _id: '$sippets.author._id',
             username: '$sippets.author.username',
-            image: '$sippets.author.image.secure_url',
+            image: 1,
           },
           blocks: '$sippets.blocks',
           language: '$sippets.language',
@@ -715,7 +711,7 @@ const getLikedSippets = async (req, res) => {
             author: {
               _id: '$sippets.ref_sippet.author._id',
               username: '$sippets.ref_sippet.author.username',
-              image: '$sippets.ref_sippet.author.image.secure_url',
+              image: 1,
             },
             blocks: '$sippets.ref_sippet.blocks',
             language: '$sippets.ref_sippet.language',
@@ -725,7 +721,7 @@ const getLikedSippets = async (req, res) => {
             hashtags: '$sippets.ref_sippet.hashtags',
             createdAt: 1,
           },
-          file: '$sippets.file.secure_url',
+          file: 1,
           likesCount: '$sippets.likesCount',
           commentsCount: '$sippets.commentsCount',
           toastsCount: '$sippets.toastsCount',
@@ -873,7 +869,7 @@ const getFollowingSippets = async (req, res) => {
           author: {
             _id: '$sippets.author._id',
             username: '$sippets.author.username',
-            image: '$sippets.author.image.secure_url',
+            image: 1,
           },
           blocks: '$sippets.blocks',
           language: '$sippets.language',
@@ -882,7 +878,7 @@ const getFollowingSippets = async (req, res) => {
             author: {
               _id: '$sippets.ref_sippet.author._id',
               username: '$sippets.ref_sippet.author.username',
-              image: '$sippets.ref_sippet.author.image.secure_url',
+              image: 1,
             },
             blocks: '$sippets.ref_sippet.blocks',
             language: '$sippets.ref_sippet.language',
@@ -892,7 +888,7 @@ const getFollowingSippets = async (req, res) => {
             hashtags: '$sippets.ref_sippet.hashtags',
             createdAt: 1
           },
-          file: '$sippets.file.secure_url',
+          file: 1,
           likesCount: '$sippets.likesCount',
           commentsCount: '$sippets.commentsCount',
           toastsCount: '$sippets.toastsCount',

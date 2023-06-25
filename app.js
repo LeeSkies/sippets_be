@@ -16,11 +16,12 @@ const server = require('http').createServer(app)
 
 // middleware
 app.use(
-  cors({
-    origin: 'https://sippets.vercel.app',
-    // origin: 'http://localhost:5173',
-    credentials: true,
-  }),
+  // cors({
+  //   origin: 'https://sippets.vercel.app',
+  //   // origin: 'http://localhost:5173',
+  //   credentials: true,
+  // }),
+  cors(),
   express.json(),
   cookieParser(),
 
