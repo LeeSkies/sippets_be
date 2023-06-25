@@ -97,10 +97,9 @@ const login = async (req, res) => {
     delete user.password
         
     res.status(200).json({ message: 'Logged in successfully', user });
-  } catch (err) {
-    console.log(err);
-    
-    return res.status(500).json({ message: err.message });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Failed to sign up' });
   }
 };
 
@@ -136,7 +135,7 @@ const getUserByName = async (req, res) => {
       });
     res.status(200).json({ _id, username, image, bio, followingCount, followersCount } = user);
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    res.status(500).json({ message: 'Failed to log in' });
   }
 };
 

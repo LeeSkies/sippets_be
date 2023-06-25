@@ -44,6 +44,7 @@ const userSchema = new mongoose.Schema({
     },
     theme: {
         type: String,
+        default: 'dark'
     },
     codeTheme: {
         type: String,
@@ -51,6 +52,7 @@ const userSchema = new mongoose.Schema({
     },
     refresh_token: {
         type: String,
+        default: ''
     }
 }, {timestamps: true})
 
