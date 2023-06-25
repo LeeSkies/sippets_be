@@ -569,6 +569,7 @@ const getLatestSippets = async (req, res) => {
               username: '$ref_sippet.author.username',
               image: '$ref_sippet.author.image.secure_url',
             },
+            file: '$ref_sippet.file.secure_url',
             blocks: '$ref_sippet.blocks',
             language: '$ref_sippet.language',
             likesCount: '$ref_sippet.likesCount',
