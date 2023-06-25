@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: 'https://sippets.vercel.app',
     credentials: true,
-    exposedHeaders: ["Set-cookie"],
+    // exposedHeaders: ["Set-cookie"],
   }),
   express.json(),
   cookieParser(),
