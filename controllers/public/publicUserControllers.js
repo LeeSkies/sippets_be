@@ -20,15 +20,15 @@ const tokenize = (_id, action) => {
 
 // Sign up a user
 const signup = async (req, res) => {
-  const { email, username, password: p } = req.body;
+  const { email, username: name, password: p } = req.body;
 
-  if (filter.isProfane(username)) {
+  if (filter.isProfane(name)) {
     return res.status(400).json({ message: '!nope!' })
   }
 
   try {
     const password = bcrypt.hashSync(p, 10);
-    const user = await User.create({ username, email, password });
+    const user = await User.create({ username: name, email, password });
 
     // issuing an access token
     const token = tokenize(user._id, 'access');
