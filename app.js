@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const { Server } = require('socket.io');
+// const { Server } = require('socket.io');
 
 // middleware imports
 const cookieParser = require('cookie-parser');
@@ -42,12 +42,12 @@ const connectDB = async () => {
 connectDB()
 
 // establishing socket connection
-const io = new Server(server, {
-  cors: {
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST'],
-    credentials: true
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST'],
+//     credentials: true
+//   },
+// });
 
-require('./socket/')(io)
+// require('./socket/')(io)
