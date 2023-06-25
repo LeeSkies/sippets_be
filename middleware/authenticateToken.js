@@ -45,16 +45,15 @@ const authenticateToken = async (req, res, next) => {
             const token = tokenize(user._id, 'access');
             res.cookie('token', token, {
               httpOnly: true,
-            //   sameSite: 'strict',
               maxAge: 3600000,
-              secure: true,
+            //   secure: true,
             });
             const refresh_token = tokenize(user._id, 'refresh')
             res.cookie('refresh', refresh_token, {
               httpOnly: true,
             //   sameSite: 'strict',
               maxAge: 2592000000,
-              secure: true,
+            //   secure: true,
             });
             req.user = user
             user.refresh_token = refresh_token;
