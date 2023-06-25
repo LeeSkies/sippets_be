@@ -30,16 +30,18 @@ const signup = async (req, res) => {
     const token = tokenize(user._id, 'access');
     res.cookie('token', token, {
       httpOnly: true,
-      sameSite: 'strict',
+      // sameSite: 'strict',
       maxAge: 900000,
+      secure: true,
     });
 
     // issuing a refresh token
     const refresh_token = tokenize(user._id, 'refresh')
     res.cookie('refresh', refresh_token, {
       httpOnly: true,
-      sameSite: 'strict',
+      // sameSite: 'strict',
       maxAge: 2592000000,
+      secure: true,
     });
 
     const { _id, image, bio, likes, followers, following, sippets, comments } = user
@@ -70,16 +72,18 @@ const login = async (req, res) => {
     const token = tokenize(user._id, 'access');
     res.cookie('token', token, {
       httpOnly: true,
-      sameSite: 'strict',
+      // sameSite: 'strict',
       maxAge: 3600000,
+      secure: true,
     });
 
     // issuing a refresh token
     const refresh_token = tokenize(user._id, 'refresh')
     res.cookie('refresh', refresh_token, {
       httpOnly: true,
-      sameSite: 'strict',
+      // sameSite: 'strict',
       maxAge: 2592000000,
+      secure: true,
     });
 
     user.refresh_token = refresh_token
