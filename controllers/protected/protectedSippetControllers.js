@@ -597,6 +597,7 @@ const getLatestSippets = async (req, res) => {
       return {
         ...sippet,
         liked,
+        ref_sippet: {...sippet.ref_sippet, file: sippet.ref_sippet.file.secure_url}
       }
     })
 
