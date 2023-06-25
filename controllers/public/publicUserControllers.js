@@ -2,6 +2,10 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
+const Filter = require('bad-words')
+
+const filter = new Filter()
+
 const User = require('../../models/userModel');
 
 // Create a JWT token
