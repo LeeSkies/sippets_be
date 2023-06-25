@@ -85,8 +85,6 @@ const login = async (req, res) => {
     user.refresh_token = refresh_token
     user.save()
 
-    buzzCount = user.buzzs.filter(buzz => !buzz.read).length
-
     delete user.password
         
     res.status(200).json({ message: 'Logged in successfully', user });

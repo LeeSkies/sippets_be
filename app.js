@@ -16,10 +16,7 @@ const server = require('http').createServer(app)
 
 // middleware
 app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-  }),
+  cors(),
   express.json(),
   cookieParser(),
 
