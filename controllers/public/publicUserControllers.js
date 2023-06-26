@@ -52,7 +52,7 @@ const signup = async (req, res) => {
     const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
     user.refresh_token = refresh_token
     user.save()
-    res.status(202).json({ ...obj, image: user?.image?.secure_url ? user.image.secure_url : null })
+    res.status(202).json({ ...obj, image: user?.image?.secure_url ? user.image : null })
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: 'An error occurred while creating the user', error: error.message });

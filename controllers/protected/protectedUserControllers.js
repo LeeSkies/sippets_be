@@ -11,7 +11,7 @@ const refresh = async (req, res) => {
   const { _id, username, bio, followersCount, followingCount, theme, codeTheme } = user
   const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
   try {
-    res.status(202).json({ ...obj, image: user?.image?.secure_url ? user.image.secure_url : null })
+    res.status(202).json({ ...obj, image: user?.image?.secure_url ? user.image : null })
   } catch (error) {
     res.status(403).json({ message:error.message })
   }
@@ -129,7 +129,7 @@ const whoToFollow = async (req, res) => {
           $project: {
             _id: 1,
             username: 1,
-            image: '$image.secure_url',
+            image: 1,
           }
         }
       ]).exec()
@@ -158,7 +158,7 @@ const whoToFollow = async (req, res) => {
           $project: {
             _id: 1,
             username: 1,
-            image: '$image.secure_url',
+            image: 1,
           }
         }
       ]).exec()
