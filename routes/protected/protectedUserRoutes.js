@@ -30,7 +30,7 @@ const router = express.Router()
 
 router.post('/refresh', refresh)
 
-router.get('/', getUser)
+router.get('/single/:id', getUser)
 
 router.get('/discover', whoToFollow)
 
