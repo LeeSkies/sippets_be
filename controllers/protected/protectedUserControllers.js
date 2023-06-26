@@ -18,9 +18,9 @@ const refresh = async (req, res) => {
 
 // Get user details
 const getUser = async (req, res) => {
-  const { user } = req
+  const { user: current } = req
   const { id } = req.params;
-  if (user._id == id) return res.status(400).json({ message: 'Seriously?' })
+  if (current._id == id) return res.status(400).json({ message: 'Seriously?' })
   try {
     const [user, followed] = await Promise.all([
       User.findById(id)
