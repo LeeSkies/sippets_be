@@ -132,7 +132,6 @@ const getSingleSippet = async (req, res) => {
     delete sippet.commentAuthors
 
     res.json(sippet)
-    console.log(sippet);
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: 'An error occurred while fetching the sippet.' });
