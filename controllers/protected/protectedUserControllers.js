@@ -1,4 +1,3 @@
-const { response } = require('express');
 const Follow = require('../../models/followModel');
 const Like = require('../../models/likeModel');
 const Sippet = require('../../models/sippetModel');
@@ -19,10 +18,18 @@ const refresh = async (req, res) => {
 
 // Get user details
 const getUser = async (req, res) => {
-  const { _id: userId } = req;
+  const { user } = req
+  const { id } = req.params;
+  if (user._id == id) return res.status(400).json({ message: 'Seriously?' })
   try {
-    const user = await User.findById(userId).select('username email image bio followersCount');
-    res.status(200).json(user);
+    const [user, followed] = await Promise.all([
+      User.findById(id)
+      .select('-email -password -buzzs -refresh_token'),
+      Follow.findOne({ follower: user._id, following: id })
+    ])
+    const { _id, username, bio, followersCount, followingCount, theme, codeTheme } = user
+    const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
+    res.status(202).json({ ...obj, image: user?.image? user.image : null, followed: followed ? true : false })
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

@@ -109,7 +109,7 @@ const getPublicUser = async (req, res) => {
 
   try {
     const user = await User.findById(id)
-      .select('-email -password -buzzs')
+      .select('-email -password -buzzs -refresh_token')
     const { _id, username, bio, followersCount, followingCount, theme, codeTheme } = user
     const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
     res.status(202).json({ ...obj, image: user?.image? user.image : null })
