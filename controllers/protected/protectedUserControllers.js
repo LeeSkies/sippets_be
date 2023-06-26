@@ -25,7 +25,7 @@ const getUser = async (req, res) => {
     const [user, followed] = await Promise.all([
       User.findById(id)
       .select('-email -password -buzzs -refresh_token'),
-      Follow.findOne({ follower: user._id, following: id })
+      Follow.findOne({ follower: current._id, following: id })
     ])
     const { _id, username, bio, followersCount, followingCount, theme, codeTheme } = user
     const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
