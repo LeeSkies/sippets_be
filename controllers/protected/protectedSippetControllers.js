@@ -40,7 +40,7 @@ const postSippet = async (req, res) => {
     await buzz.notifyPost(user._id)
     user.sippetsCount ++
     user.save()
-    res.status(201).json({ message: 'Sippet posted successfully' });
+    res.status(201).json({ message: 'Sippet posted successfully', sippet_id: sippet._id });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -72,7 +72,7 @@ const postComment = async (req, res) => {
     })
     await buzz.notifyPost(user._id)
     await Sippet.findByIdAndUpdate(sippetId, { $inc: {commentsCount: 1}})
-    res.status(201).json({ message: 'Comment posted successfully' });
+    res.status(201).json({ message: 'Comment posted successfully', sippet_id: sippet._id });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
