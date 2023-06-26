@@ -112,7 +112,7 @@ const getPublicUser = async (req, res) => {
       .select('-email -password -buzzs')
     const { _id, username, bio, followersCount, followingCount, theme, codeTheme } = user
     const obj = { _id, username, bio, followersCount, followingCount, theme, codeTheme }
-    res.status(202).json({ ...obj, image: user?.image?.secure_url ? user.image.secure_url : null })
+    res.status(202).json({ ...obj, image: user?.image? user.image : null })
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
