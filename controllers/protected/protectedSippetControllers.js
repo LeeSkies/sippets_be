@@ -405,6 +405,7 @@ const getSingleSippet = async (req, res) => {
               username: '$ref_sippet.author.username',
               image: 1,
             },
+            file: 1,
             blocks: '$ref_sippet.blocks',
             language: '$ref_sippet.language',
             likesCount: '$ref_sippet.likesCount',
