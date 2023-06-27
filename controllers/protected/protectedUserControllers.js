@@ -22,7 +22,7 @@ const logout = async (req, res) => {
     res.cookie(cookie, '', { expires: new Date(0) })
   }
   user.refresh_token = null
-  user.save()
+  await user.save()
   res.json({ message: 'Logged out successfully' })
 }
 
