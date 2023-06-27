@@ -6,6 +6,8 @@ const { tokenize } = require('../controllers/public/publicUserControllers');
 
 const authenticateToken = async (req, res, next) => {
     const { token, refresh } = req.cookies
+    console.log(token);
+    console.log(refresh);
     try {
         // check for token existence
         if (!token && !refresh) {
