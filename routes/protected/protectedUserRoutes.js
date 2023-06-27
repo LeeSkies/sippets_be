@@ -5,13 +5,13 @@ const {
     updateUser,
     followUser,
     refresh,
-    whoToFollow
+    whoToFollow,
+    logout
 } = require('../../controllers/protected/protectedUserControllers');
 
 const path = require('path');
 
 const multer = require('multer');
-const { logout } = require('../../controllers/public/publicUserControllers');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
