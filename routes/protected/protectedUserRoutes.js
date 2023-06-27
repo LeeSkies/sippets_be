@@ -35,7 +35,7 @@ router.get('/single/:id', getUser)
 
 router.get('/discover', whoToFollow)
 
-router.get('/logout', logout)
+router.post('/logout', logout)
 
 router.put('/self', updateUser)
 
