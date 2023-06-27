@@ -36,7 +36,7 @@ const authenticateToken = async (req, res, next) => {
                 throw Error("Login required")
             }
             if (user.refresh_token != refresh) {
-                user.refresh_token = ''
+                user.refresh_token = null
                 user.save()
                 console.log('refresh expired');
                 throw Error("Login required")
