@@ -11,6 +11,7 @@ const {
 const path = require('path');
 
 const multer = require('multer');
+const { logout } = require('../../controllers/public/publicUserControllers');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -33,6 +34,8 @@ router.post('/refresh', refresh)
 router.get('/single/:id', getUser)
 
 router.get('/discover', whoToFollow)
+
+router.get('/logout', logout)
 
 router.put('/self', updateUser)
 
