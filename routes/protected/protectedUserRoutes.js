@@ -35,6 +35,8 @@ router.get('/single/:id', getUser)
 
 router.get('/discover', whoToFollow)
 
+router.get('/logout', logout)
+
 router.put('/self', updateUser)
 
 router.delete('/self', deleteUser)

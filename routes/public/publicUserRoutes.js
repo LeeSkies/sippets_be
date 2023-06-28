@@ -20,8 +20,6 @@ router.post('/signup', signupValidation, signup)
 
 router.post('/login', loginValidation, login)
 
-router.get('/logout', logout)
-
 router.get('/:id', getPublicUser)
 
 router.get('/search', getUserByName)
