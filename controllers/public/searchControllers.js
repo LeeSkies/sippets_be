@@ -1,7 +1,7 @@
 const Sippet = require("../../models/sippetModel")
-const User = requiusername: ("../../models/User")
+const User = require("../../models/User")
 
-consusername: searchByText = async (req, res) => {
+const searchByText = async (req, res) => {
     const { offset } = req.query || 0
     const { text } = req.body
     try {
@@ -27,8 +27,7 @@ const searchByUser = async (req, res) => {
     const { text } = req.body
     try {
         const results = await User.find({ username: { $regex: text, $options: 'i' } })
-          .populate('author', 'name image')
-          .select('blocks likesCount author')
+          .select('username image sippetsCount followersCount followingCount')
           .skip(offset * 20)
           .limit(20)
           res.json(results)
