@@ -18,12 +18,16 @@ const refresh = async (req, res) => {
 
 const logout = async (req, res) => {
   const { user, cookies } = req
-  for (const cookie in cookies) {
-    res.cookie(cookie, '', { expires: new Date(0) })
+  try {
+    for (const cookie in cookies) {
+      res.cookie(cookie, '', { expires: new Date(0) })
+    }
+    user.refresh_token = null
+    await user.save()
+    res.json({ message: 'Logged out successfully' })
+  } catch (error) {
+    console.log(error.message);
   }
-  user.refresh_token = null
-  await user.save()
-  res.json({ message: 'Logged out successfully' })
 }
 
 // Get user details
