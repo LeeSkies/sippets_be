@@ -13,7 +13,7 @@ const searchByText = async (req, res) => {
             }
           })
           .populate('author', 'username image.secure_url')
-          .select('blocks likesCount author createdAt')
+          .select('blocks likesCount author createdAt language')
           .skip(offset * 20)
           .limit(20)
           res.json(results)
