@@ -104,9 +104,10 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  const { user } = req
-  res.cookie('token', '', { expires: new Date(0) })
-  res.cookie('refresh', '', { expires: new Date(0) })
+  const { user, cookies } = req
+  for (const cookie in cookies) {
+    res.cookie(cookie, '', { expires: new Date(0) })
+  }
   user.refresh_token = null
   await user.save()
   res.json({ message: 'Logged out successfully' })
