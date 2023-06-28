@@ -27,7 +27,7 @@ const searchByUser = async (req, res) => {
     const { text } = req.body
     try {
         const results = await User.find({ username: { $regex: text, $options: 'i' } })
-          .select('username image sippetsCount followersCount followingCount')
+          .select('username image.secure_url sippetsCount followersCount followingCount')
           .skip(offset * 20)
           .limit(20)
           res.json(results)
