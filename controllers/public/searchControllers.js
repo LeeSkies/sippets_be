@@ -33,7 +33,7 @@ const searchByUser = async (req, res) => {
           res.json(results)
     } catch (error) {
         console.log(error.message);
-    }
+    }}
 }
 
 module.exports = {
