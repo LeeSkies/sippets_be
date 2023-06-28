@@ -6,7 +6,7 @@ const searchByText = async (req, res) => {
         const results = await Sippet.find({
             blocks: {
               $elemMatch: {
-                value: { $regex: 'searchString', $options: 'i' }
+                value: { $regex: text, $options: 'i' }
               }
             }
           })
