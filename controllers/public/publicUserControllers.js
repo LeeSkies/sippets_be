@@ -103,6 +103,15 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  // const { user } = req
+  res.cookie('token', '', { expires: new Date(0) })
+  res.cookie('refresh', '', { expires: new Date(0) })
+  // user.refresh_token = null
+  // await user.save()
+  res.json({ message: 'Logged out successfully' })
+}
+
 // Get public user details
 const getPublicUser = async (req, res) => {
   const { id } = req.params;
@@ -142,6 +151,7 @@ const getUserByName = async (req, res) => {
 module.exports = {
   signup,
   login,
+  logout,
   getPublicUser,
   getUserByName,
   tokenize

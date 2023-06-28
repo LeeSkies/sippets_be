@@ -9,7 +9,7 @@ const {
     login,
     getPublicUser,
     getUserByName,
-    refresh
+    logout
 } = require('../../controllers/public/publicUserControllers');
 
 const authenticateToken = require('../../middleware/authenticateToken');
@@ -20,7 +20,7 @@ router.post('/signup', signupValidation, signup)
 
 router.post('/login', loginValidation, login)
 
-// router.post('/refresh', refresh)
+router.get('/logout', logout)
 
 router.get('/:id', getPublicUser)
 

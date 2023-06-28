@@ -16,15 +16,6 @@ const refresh = async (req, res) => {
   }
 }
 
-const logout = async (req, res) => {
-  // const { user } = req
-  res.cookie('token', '', { expires: new Date(0) })
-  res.cookie('refresh', '', { expires: new Date(0) })
-  // user.refresh_token = null
-  // await user.save()
-  res.json({ message: 'Logged out successfully' })
-}
-
 // Get user details
 const getUser = async (req, res) => {
   const { user: current } = req
@@ -188,7 +179,6 @@ const whoToFollow = async (req, res) => {
 
 module.exports = {
   refresh,
-  logout,
   getUser,
   deleteUser,
   updateUser,
