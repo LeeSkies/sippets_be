@@ -25,7 +25,7 @@ const authenticateToken = async (req, res, next) => {
             console.log(error.message);
         }
         try {
-            if (!refresh || refresh == '') {
+            if (!refresh || refresh == '' || refresh == null) {
                 console.log('no refresh');
                 throw Error("Login required")
             }
