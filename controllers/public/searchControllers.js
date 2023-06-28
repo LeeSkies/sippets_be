@@ -1,5 +1,5 @@
 const Sippet = require("../../models/sippetModel")
-const User = require("../../models/User")
+const User = require("../../models/userModel")
 
 const searchByText = async (req, res) => {
     const { offset } = req.query || 0
