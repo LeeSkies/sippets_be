@@ -3,7 +3,7 @@ const User = require("../../models/userModel")
 
 const searchByText = async (req, res) => {
     const { offset } = req.query || 0
-    const { text } = req.body
+    const { text } = req.query
     try {
         const results = await Sippet.find({
             blocks: {
@@ -24,7 +24,7 @@ const searchByText = async (req, res) => {
 
 const searchByUser = async (req, res) => {
     const { offset } = req.query || 0
-    const { text } = req.body
+    const { text } = req.query
     try {
         const results = await User.find({ username: { $regex: text, $options: 'i' } })
           .select('username image.secure_url sippetsCount followersCount followingCount')
