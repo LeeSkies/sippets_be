@@ -26,7 +26,7 @@ const searchByUser = async (req, res) => {
     const { offset } = req.query || 0
     const { text } = req.body
     try {
-        const results = await User.find({ username: 'yo'  })
+        const results = await User.find({ username: { $regex: text, $options: 'i' } })
           .populate('author', 'name image')
           .select('blocks likesCount author')
           .skip(offset * 20)
@@ -37,10 +37,7 @@ const searchByUser = async (req, res) => {
     }
 }
 
-const searchByLanguage = async (req, res) => {
-    
-}
-
 module.exports = {
-    searchByText
+    searchByText,
+    searchByUser,
 }
