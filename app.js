@@ -17,7 +17,7 @@ const server = require('http').createServer(app)
 // middleware
 app.use(
   cors({
-    origin: 'https://sippets1.vercel.app',
+    origin: 'https://sippets.vercel.app',
     credentials: true,
   }),
   express.json(),
