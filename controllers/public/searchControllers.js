@@ -10,6 +10,8 @@ const searchByText = async (req, res) => {
               }
             }
           })
+          .populate(author, 'name image')
+          .select('blocks likesCount author')
           res.json(results)
     } catch (error) {
         console.log(error.message);
