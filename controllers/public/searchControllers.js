@@ -13,7 +13,7 @@ const searchByText = async (req, res) => {
             }
           })
           .populate('author', 'username image.secure_url')
-          .select('blocks likesCount author')
+          .select('blocks likesCount author createdAt')
           .skip(offset * 20)
           .limit(20)
           res.json(results)
@@ -27,7 +27,7 @@ const searchByUser = async (req, res) => {
     const { text } = req.query
     try {
         const results = await User.find({ username: { $regex: text, $options: 'i' } })
-          .select('username image.secure_url sippetsCount followersCount followingCount')
+          .select('username image.secure_url sippetsCount followersCount followingCount createdAt')
           .skip(offset * 20)
           .limit(20)
           res.json(results)
