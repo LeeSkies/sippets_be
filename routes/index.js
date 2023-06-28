@@ -10,9 +10,11 @@ const publicSippetRoutes = require('./public/publicSippetRoutes');
 const protectedSippetRoutes = require('./protected/protectedSippetRoutes');
 const buzzRoutes = require('./protected/buzzRoutes')
 const protectedConversationRoutes = require('./protected/protectedConversationRoutes')
+const searchRoutes = require('./public/searchRoutes')
 
 router.use('/public/user', publicUserRoutes);
 router.use('/public/sippet', publicSippetRoutes);
+router.use('/public/search', publicSearchRoutes);
 router.use('/protected/user', authenticateToken, protectedUserRoutes);
 router.use('/protected/sippet', authenticateToken, protectedSippetRoutes);
 router.use('/protected/buzz', authenticateToken, buzzRoutes)
