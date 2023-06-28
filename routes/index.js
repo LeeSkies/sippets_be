@@ -14,7 +14,7 @@ const searchRoutes = require('./public/searchRoutes')
 
 router.use('/public/user', publicUserRoutes);
 router.use('/public/sippet', publicSippetRoutes);
-router.use('/public/search', publicSearchRoutes);
+router.use('/public/search', searchRoutes);
 router.use('/protected/user', authenticateToken, protectedUserRoutes);
 router.use('/protected/sippet', authenticateToken, protectedSippetRoutes);
 router.use('/protected/buzz', authenticateToken, buzzRoutes)
